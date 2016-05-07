@@ -4,12 +4,8 @@
 
 require 'win32/sound'
 require_relative 'tone_test'
+require_relative 'fidelity_test'
 include Win32
-
-def fidelity_test
-  puts "The lossy vs. losseless testing will go here"
-  sleep 5
-end
 
 def scoreboard
   puts "The user scores will be shown here"
@@ -26,9 +22,9 @@ while option != 4 do
   option = gets.chomp.to_i
   case option
     when 1
-      tone_test
+      ToneTest.new
     when 2
-      fidelity_test
+      FidelityTest.new
     when 3
       scoreboard
     when 4
