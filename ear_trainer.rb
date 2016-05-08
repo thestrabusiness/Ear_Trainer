@@ -13,7 +13,14 @@ def scoreboard
 end
 
 def get_input
-  gets.chomp.to_i
+  input = gets.to_i
+  case input
+    when 0
+      puts "That's not a valid choice"
+      get_input
+    else
+      return input
+  end
 end
   
 

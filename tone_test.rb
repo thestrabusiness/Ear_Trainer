@@ -23,12 +23,12 @@ class ToneTest
     puts "Correct!"
   end
 
-  def generate_question(test_tones, responses)
+  def generate_question
     pick = 1
     while pick <4
-      @raw_responses = (@test_tones -  responses)
+      @raw_responses = (@test_tones -  @responses)
       @responses << raw_responses.sample
-      @raw_responses = (raw_responses - responses)
+      @raw_responses = (raw_responses - @responses)
       pick += 1
     end
   end
@@ -50,7 +50,7 @@ class ToneTest
       @responses = []
       @responses << answer
       
-      generate_question(@test_tones, @responses)
+      generate_question
       
       print_question(answer)
       
@@ -60,6 +60,8 @@ class ToneTest
       puts answer == @answernum ? keep_score : "Incorrect!"
       sleep 3
     end
+    puts "You got #{@score} out of 10 correct!"
+    sleep 3    
   end
   
 end
