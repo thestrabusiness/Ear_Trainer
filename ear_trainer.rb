@@ -5,43 +5,50 @@
 require 'win32/sound'
 require_relative 'tone_test'
 require_relative 'fidelity_test'
+require_relative 'user'
 include Win32
 
-def scoreboard
-  puts "The user scores will be shown here"
-  sleep 5
-end
-
-def get_input
-  input = gets.to_i
-  case input
-    when 0
-      puts "That's not a valid choice"
-      get_input
-    else
-      return input
-  end
-end
+class EarTrainer
   
-
-option = 0 
-while option != 4 do
-  puts "Choose from options 1-4 below: "
-  puts " 1. Tone test"
-  puts " 2. Lossy vs Lossless test"
-  puts " 3. Scoreboard"
-  puts " 4. Exit"
-  option = get_input
-  case option
-    when 1
-      ToneTest.new
-    when 2
-      FidelityTest.new
-    when 3
-      scoreboard
-    when 4
-      exit
-    else
-      puts "That's not a valid choice."
+  attr_accessor :user, :option, :score
+  
+  def initialize
+    system "cls"
+    @user = User.new
+    @option = 0
+    
+    show_menu
   end
-end  
+    
+  def scoreboard
+    puts "The user scores will be shown here"
+    sleep 5
+  end
+
+  def show_menu
+    while @option != 4 do
+      system "cls"
+      puts "Hi, #{@user.name}! Choose from options 1-4 below: "
+      puts " 1. Tone test"
+      puts " 2. Lossy vs Lossless test"
+      puts " 3. Scoreboard"
+      puts " 4. Exit"
+      @option = gets.to_i
+      case @option
+        when 1
+          ToneTest.new(@user)
+        when 2
+          FidelityTest.new
+        when 3
+          scoreboard
+        when 4
+          exit
+        else
+          puts "That's not a valid choice."
+      end
+    end
+  end
+    
+end
+
+EarTrainer.new

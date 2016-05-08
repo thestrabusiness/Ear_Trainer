@@ -3,12 +3,12 @@ TONE_PATH = File.dirname(__FILE__) + "/Tones/"
 
 class ToneTest
 
-  attr_accessor :test_tones, :responses, :raw_responses, :score, :answernum
+  attr_accessor :test_tones, :responses, :raw_responses, :answernum
 
-  def initialize
+  def initialize(user)
     @test_tones = ALL_TONES.shuffle
-    @score = 0
     @answernum = nil
+    @user = user
     
     run_test(@test_tones)
   end
@@ -19,7 +19,7 @@ class ToneTest
   end
   
   def keep_score
-    @score += 1
+    @user.score += 1
     puts "Correct!"
   end
 
@@ -39,8 +39,8 @@ class ToneTest
     @responses.each do |response|
       @answernum = x if response == answer 
       print x
-      x += 1
       puts". #{response}"
+      x += 1
     end
   end
 
@@ -56,11 +56,11 @@ class ToneTest
       
       play_tone(answer)
       puts "Which tone played?"
-      answer = get_input
+      answer = gets.to_i
       puts answer == @answernum ? keep_score : "Incorrect!"
-      sleep 3
+      sleep 2
     end
-    puts "You got #{@score} out of 10 correct!"
+    puts "You got #{@user.score} out of 10 correct!"
     sleep 3    
   end
   
