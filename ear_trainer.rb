@@ -12,6 +12,11 @@ def scoreboard
   sleep 5
 end
 
+def get_input
+  gets.chomp.to_i
+end
+  
+
 option = 0 
 while option != 4 do
   puts "Choose from options 1-4 below: "
@@ -19,7 +24,7 @@ while option != 4 do
   puts " 2. Lossy vs Lossless test"
   puts " 3. Scoreboard"
   puts " 4. Exit"
-  option = gets.chomp.to_i
+  option = get_input
   case option
     when 1
       ToneTest.new
