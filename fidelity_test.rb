@@ -1,14 +1,31 @@
+SAMPLE_PATH = File.dirname(__FILE__) + "/Samples/"
+
 class FidelityTest
-  attr_reader :placeholder
   
-  def initialize
-    @placeholder = "Fidelity test goes here"
+  def initialize(user)
+    @samples = []
+    @answernum = nil
+    @user = user
     
-    run_test(@placeholder)
+    run_test
   end
   
-  def run_test(placeholder)
-    puts placeholder
+  def load_samples
+    while File.load
+      @samples
+    end
   end
   
+  def play_sample(sample)
+#    path = SAMPLE_PATH + "#{sample}"
+#    Sound.play(path)
+  end
+  
+  def 
+  
+  def run_test
+    x = 1
+      
+  end
+
 end

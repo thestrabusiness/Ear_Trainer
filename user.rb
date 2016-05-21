@@ -11,4 +11,9 @@ class User
     gets.chomp
   end
   
+  def keep_score
+    @user.score += 1
+    puts "Correct!"
+  end
+  
 end
