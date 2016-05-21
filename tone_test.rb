@@ -17,11 +17,6 @@ class ToneTest
     path = TONE_PATH + "#{tone}.wav"
     Sound.play(path)
   end
-  
-  def keep_score
-    @user.score += 1
-    puts "Correct!"
-  end
 
   def generate_question
     pick = 1
@@ -57,7 +52,7 @@ class ToneTest
       play_tone(answer)
       puts "Which tone played?"
       answer = gets.to_i
-      puts answer == @answernum ? keep_score : "Incorrect!"
+      puts answer == @answernum ? @user.keep_score : "Incorrect!"
       sleep 2
     end
     puts "You got #{@user.score} out of 10 correct!"

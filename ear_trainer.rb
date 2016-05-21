@@ -38,7 +38,7 @@ class EarTrainer
         when 1
           ToneTest.new(@user)
         when 2
-          FidelityTest.new
+          FidelityTest.new(@user)
         when 3
           scoreboard
         when 4
