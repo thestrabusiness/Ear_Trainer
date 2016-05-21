@@ -12,7 +12,7 @@ class User
   end
   
   def keep_score
-    @user.score += 1
+    @score += 1
     puts "Correct!"
   end
   

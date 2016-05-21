@@ -13,11 +13,15 @@ class EarTrainer
   attr_accessor :user, :option, :score
   
   def initialize
-    system "cls"
+    clear
     @user = User.new
     @option = 0
     
     show_menu
+  end
+  
+  def clear
+    system "cls"
   end
     
   def scoreboard
@@ -27,7 +31,7 @@ class EarTrainer
 
   def show_menu
     while @option != 4 do
-      system "cls"
+      clear
       puts "Hi, #{@user.name}! Choose from options 1-4 below: "
       puts " 1. Tone test"
       puts " 2. Lossy vs Lossless test"
