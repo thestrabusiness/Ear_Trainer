@@ -6,6 +6,7 @@ class FidelityTest
     @samples = Dir[SAMPLE_PATH + "*.wav"]
     @answernum = nil
     @user = user
+    @user.score = 0
     
     run_test
   end
@@ -28,8 +29,6 @@ class FidelityTest
       rand(2..5).times { letters.shuffle! }
       letters.each do |letter|
         filename = "Sample#{x}_#{letter}.wav"
-        puts letter
-        puts filename
         puts "Playing sample #{sample_count} of 2 from set #{x}..."
         @answernum = sample_count if letter == "B"
         

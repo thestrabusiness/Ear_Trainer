@@ -9,6 +9,7 @@ class ToneTest
     @test_tones = ALL_TONES.shuffle
     @answernum = nil
     @user = user
+    @user.score = 0
     
     run_test(@test_tones)
   end
