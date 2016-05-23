@@ -5,7 +5,6 @@ class FidelityTest
   def initialize(user)
     @samples = Dir[SAMPLE_PATH + "*.wav"]
     @answernum = nil
-    @answer = ""
     @user = user
     @user.score = 0
     
@@ -17,7 +16,8 @@ class FidelityTest
     Sound.play(path)
   end
   
-  def generate_question
+  def question_end(answer)
+    puts answer == @answernum ? @user.keep_score : "Incorrect!"
   end
 
   def run_test
@@ -26,7 +26,9 @@ class FidelityTest
     letters = ["A", "B"]
     set = []
     
+    
     while x <= @samples.length/2 do
+      responded = false
       sample_count = 1
       rand(2..5).times { letters.shuffle! }
       letters.each do |letter|
@@ -40,17 +42,21 @@ class FidelityTest
         sample_count += 1
       end
       
-      
-      until @answer == @answernum.to_s
+      while responded == false
         puts "Which sample was lossless?"
-        puts 'Answer "1" or "2", or leave blank and hit "Enter" to replay'
-        @answer = gets.chomp.to_s
-        if @answer == ""
-          set.each { |sample| play_sample(sample) }
-        elsif @answer == "1" || "2"            
-          puts @answer.to_i == @answernum ? @user.keep_score : "Incorrect!"
-        else
-          puts "whoops"
+        puts 'Answer "1" or "2", or enter "3" to replay'
+        answer = gets.to_i
+        case answer
+          when 1            
+            question_end(answer)
+            responded = true
+          when 2            
+            question_end(answer)
+            responded = true
+          when  3
+            set.each { |sample| play_sample(sample) }
+          else
+            puts "That's not a valid choice"
         end
       end
 
