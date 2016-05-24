@@ -16,24 +16,27 @@ class FidelityTest
     Sound.play(path)
   end
   
-  def question_end(answer)
+  def end_question(answer)
     puts answer == @answernum ? @user.keep_score : "Incorrect!"
+    return true
   end
 
   def run_test
     system "cls"
     x = 1
     letters = ["A", "B"]
-    set = []
+    clips = []
     
     
     while x <= @samples.length/2 do
       responded = false
       sample_count = 1
+      
       rand(2..5).times { letters.shuffle! }
       letters.each do |letter|
         filename = "Sample#{x}_#{letter}.wav"
-        set << filename
+        clips << filename
+        
         puts "Playing sample #{sample_count} of 2 from set #{x}..."
         @answernum = sample_count if letter == "B"
         
@@ -46,18 +49,16 @@ class FidelityTest
         puts "Which sample was lossless?"
         puts 'Answer "1" or "2", or enter "3" to replay'
         answer = gets.to_i
+        
         case answer
-          when 1            
-            question_end(answer)
-            responded = true
-          when 2            
-            question_end(answer)
-            responded = true
-          when  3
-            set.each { |sample| play_sample(sample) }
+          when 1, 2            
+            resonded = end_question(answer)
+          when 3
+            clips.each { |sample| play_sample(sample) }
           else
             puts "That's not a valid choice"
         end
+        
       end
 
       sleep 2

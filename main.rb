@@ -4,13 +4,14 @@
 
 require 'win32/sound'
 require_relative 'tone_test'
+require_relative 'tone_training'
 require_relative 'fidelity_test'
 require_relative 'user'
 include Win32
 
-class EarTrainer
+class MainMenu
   
-  attr_accessor :user, :option, :score
+  attr_accessor :user, :option
   
   def initialize
     clear
@@ -30,22 +31,25 @@ class EarTrainer
   end
 
   def show_menu
-    while @option != 4 do
+    while @option != 3 do
       clear
-      puts "Hi, #{@user.name}! Choose from options 1-4 below: "
-      puts " 1. Tone test"
-      puts " 2. Lossy vs Lossless test"
-      puts " 3. Scoreboard"
-      puts " 4. Exit"
+      puts "Hi, #{@user.name}! Choose from options 1-3 below: "
+      puts " 1. Tone training"
+      puts " 2. Lossy vs lossless training"
+      puts " 3. Tone test"
+      puts " 4. Lossy vs Lossless test"
+      puts " 5. Exit"
       @option = gets.to_i
       case @option
         when 1
-          ToneTest.new(@user)
+          ToneTraining.new(@user)
         when 2
-          FidelityTest.new(@user)
+          FidelityTest.new(@user) 
         when 3
-          scoreboard
+          ToneTest.new(@user)
         when 4
+          FidelityTest.new(@user)
+        when 5
           exit
         else
           puts "That's not a valid choice."
@@ -55,4 +59,4 @@ class EarTrainer
     
 end
 
-EarTrainer.new
+MainMenu.new
