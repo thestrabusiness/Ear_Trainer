@@ -24,21 +24,21 @@ class FidelityTest
   def run_test
     system "cls"
     x = 1
-    letters = ["A", "B"]
-    clips = []
+    types = ["MP3", "FLAC"]
+    clips =   []
     
     
     while x <= @samples.length/2 do
       responded = false
       sample_count = 1
       
-      rand(2..5).times { letters.shuffle! }
-      letters.each do |letter|
-        filename = "Sample#{x}_#{letter}.wav"
+      rand(2..5).times { types.shuffle! }
+      types.each do |type|
+        filename = "Sample#{x}_#{type}.wav"
         clips << filename
         
         puts "Playing sample #{sample_count} of 2 from set #{x}..."
-        @answernum = sample_count if letter == "B"
+        @answernum = sample_count if type == "FLAC"
         
         play_sample(filename)
         

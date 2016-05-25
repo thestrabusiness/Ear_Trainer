@@ -6,6 +6,7 @@ require 'win32/sound'
 require_relative 'tone_test'
 require_relative 'tone_training'
 require_relative 'fidelity_test'
+require_relative 'fidelity_training'
 require_relative 'user'
 include Win32
 
@@ -33,7 +34,7 @@ class MainMenu
   def show_menu
     while @option != 3 do
       clear
-      puts "Hi, #{@user.name}! Choose from options 1-3 below: "
+      puts "Hi, #{@user.name}! Choose from options 1-5 below: "
       puts " 1. Tone training"
       puts " 2. Lossy vs lossless training"
       puts " 3. Tone test"
@@ -44,7 +45,7 @@ class MainMenu
         when 1
           ToneTraining.new(@user)
         when 2
-          FidelityTest.new(@user) 
+          FidelityTraining.new(@user) 
         when 3
           ToneTest.new(@user)
         when 4

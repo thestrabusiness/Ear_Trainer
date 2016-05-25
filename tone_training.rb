@@ -31,10 +31,12 @@ class ToneTraining
       end
       
       option = gets.chomp.to_i
-      if option > @tones.length
+      if option == 0 
+        return
+      elsif option > @tones.length
           puts "That's not a valid choice"
       elsif option <= @tones.length
-          play_tone(@tones[option])
+          play_tone(@tones[option-1])
       end
   
     end
