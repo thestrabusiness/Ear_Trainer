@@ -5,5 +5,5 @@ A simple app that tests your ability to recognize tones and differentiate betwee
 ## Requirements
 Currently this program will **only run on Windows**. You'll need the Win32-Sound gem using `gem install win32-sound` .
 
-##Running the app
-Starting the app by running ear_trainer.rb
+## Running the app
+Starting the app by running main.rb
