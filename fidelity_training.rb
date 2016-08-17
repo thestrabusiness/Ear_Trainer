@@ -23,7 +23,7 @@ class FidelityTraining
     
     until option == 0
       system "cls"
-      puts "Choose a sample to play:"
+      puts "Choose a sample to play or enter 0 to return..."
       x = 1
       for sample in @samples
         puts "#{x}. #{sample.sub(SAMPLE_PATH, "").sub(".wav", "")}"

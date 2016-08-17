@@ -23,7 +23,7 @@ class ToneTraining
     
     until option == 0
       system "cls"
-      puts "Choose a tone to play:"
+      puts "Choose a tone to play, or enter 0 to return..."
       x = 1
       for tone in @tones
         puts "#{x}. #{tone}"
