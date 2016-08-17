@@ -1,4 +1,3 @@
-ALL_TONES = ["32Hz", "64Hz", "125Hz", "250Hz", "500Hz", "1kHz", "2kHz", "4kHz", "8kHz", "16kHz"]
 TONE_PATH = File.dirname(__FILE__) + "/Tones/"
 
 class ToneTraining
