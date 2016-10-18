@@ -5,12 +5,23 @@ class ToneTest
   attr_accessor :test_tones, :responses, :raw_responses, :answernum
 
   def initialize(user)
-    @test_tones = ALL_TONES.shuffle
+    @test_tones = set_tones
     @answernum = nil
     @user = user
     @user.score = 0
     
     run_test(@test_tones)
+  end
+  
+  def set_tones
+    raw_tones = Dir[TONE_PATH + "*.wav"]
+    test_tones = []
+    raw_tones.each do |tone|
+      test_tones << tone.sub(TONE_PATH, "").sub(".wav", "")
+    end
+    
+    test_tones
+    
   end
 
   def play_tone(tone)
@@ -20,7 +31,7 @@ class ToneTest
 
   def generate_question
     pick = 1
-    while pick <4
+    while pick < 4
       @raw_responses = (@test_tones -  @responses)
       @responses << raw_responses.sample
       @raw_responses = (raw_responses - @responses)
