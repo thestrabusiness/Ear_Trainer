@@ -52,7 +52,7 @@ class FidelityTest
         
         case answer
           when 1, 2            
-            resonded = end_question(answer)
+            responded = end_question(answer)
           when 3
             clips.each { |sample| play_sample(sample) }
           else
